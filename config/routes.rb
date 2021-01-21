@@ -1,3 +1,16 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  namespace :api do
+    namespace :v1 do
+      post '/login', to: 'sessions#login'
+      get '/autologin', to: 'sessions#autologin'
+
+      resources :products, only: [:index, :create, :update, :destroy]
+      get '/products_by', to: 'products#filter_products'
+      
+      resources :order_items, only: [:create, :update, :destroy]
+
+      resources :users, only: [:index]
+      post '/signup', to: 'users#create'
+    end
+  end
 end
