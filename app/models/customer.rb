@@ -1,3 +1,3 @@
 class Customer < User
-  has_many :products
+  has_one :order
 end

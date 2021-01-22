@@ -7,6 +7,11 @@ class Api::V1::UsersController < ApplicationController
     render json: users
   end
 
+  def sellers
+    sellers = User.sellers
+    render json: sellers
+  end
+
   def create 
     user = User.create(user_params)
 

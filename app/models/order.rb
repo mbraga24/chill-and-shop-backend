@@ -1,5 +1,7 @@
 class Order < ApplicationRecord
-  has_many :order_items
+	has_many :order_items
+	belongs_to :customer
+	
 	before_save :set_subtotal
 
 	def subtotal

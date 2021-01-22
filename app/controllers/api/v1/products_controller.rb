@@ -1,5 +1,5 @@
 class Api::V1::ProductsController < ApplicationController
-  skip_before_action :authenticate, only: [:index, :create, :filter_products]
+  skip_before_action :authenticate, only: [:index, :filter_products]
 
   def index
     products = Product.all
@@ -7,16 +7,19 @@ class Api::V1::ProductsController < ApplicationController
   end
 
   def create
-    # product = Product.new(product_params)
-    product = Product.create(
-      name: params[:name], 
-      price: params[:price], 
+    product = Product.new(
+      title: params[:title], 
+      price: params[:price].to_f, 
       quantity: params[:quantity].to_i,
+      seller: @current_user
     )
     if product.valid?
-      render json: { product: ProductSerializer.new(product) }, status: :created
+      image = Cloudinary::Uploader.upload(params[:file])
+      product[:image_url] = image["url"]
+      product.save
+      render json: { product: ProductSerializer.new(product), confirmation: "Product added to inventory." }, status: :created
     else
-      render json: { errors: @product.errors.full_messages }
+      render json: { errors: product.errors.full_messages }, status: :bad_request
     end
   end
 
@@ -35,9 +38,18 @@ class Api::V1::ProductsController < ApplicationController
   end
 
   def destroy
-    @product = Product.find(params[:id])
-    @product.destroy
-    redirect_to products_path    
+    product = Product.find(params[:id])
+
+    link_array = product.image_url.split("/")
+    identifier = link_array[link_array.length - 1].split(".")[0]
+    result = Cloudinary::Uploader.destroy(identifier)
+    
+    if result.value?("ok")
+      product.destroy
+      render json: { product: ProductSerializer.new(product), confirmation: "Product deleted successfully!" }, status: :accepted
+    else
+      render json: { error: "Something went wrong! Try again later." }, status: :bad_request
+    end
   end
 
   private
