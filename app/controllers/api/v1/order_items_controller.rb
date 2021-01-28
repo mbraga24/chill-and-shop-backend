@@ -3,7 +3,6 @@ class Api::V1::OrderItemsController < ApplicationController
 
 	def index 
 		order = current_order
-		# render json: { orders: order_items }
 		render json: {
 			orders: order.order_items.map { |item|
 				OrderItemSerializer.new(item).attributes
@@ -13,13 +12,11 @@ class Api::V1::OrderItemsController < ApplicationController
 	end
 
 	def create
-		# byebug
+		# is_available = is_empty_or_update_product(params[:product_id])
 		order = current_order
-		# order_item = order.order_items.new(order_item_params)
-		order_item = add_item(order, params[:product_id], params[:quantity])
-		if order.valid?
+		order_item = add_or_create_order_item(order, params[:product_id], params[:quantity])
+		if order.valid? && order_item.valid?
 			order.save
-			# byebug
       render json: { orderItem: OrderItemSerializer.new(order_item), orderTotal: order.total, confirmation: "Product added to you cart."  }
     else 
       render json: { errors: order.errors.full_messages }
