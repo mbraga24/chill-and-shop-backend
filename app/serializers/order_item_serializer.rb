@@ -6,6 +6,7 @@ class OrderItemSerializer < ActiveModel::Serializer
     return {
       title: product.title,
       image_url: product.image_url,
+      quantity: product.quantity,
       seller: product.seller
     }
   end
