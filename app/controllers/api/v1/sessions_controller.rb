@@ -8,7 +8,7 @@ class Api::V1::SessionsController < ApplicationController
 
     if user && user.authenticate(user_credentials_params[:password])
       token = encode_token({ user_id: user.id })
-      render json: { user: UserSerializer.new(user), token: token, success: "Welcome back, #{user.first_name}!" }, status: :accepted
+      render json: { user: UserSerializer.new(user), token: token, confirmation: "Welcome back, #{user.first_name}!" }, status: :accepted
     else
       render json: { header: "Invalid email or password", error: [] }, status: :unauthorized
     end

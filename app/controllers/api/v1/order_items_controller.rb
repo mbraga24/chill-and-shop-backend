@@ -1,15 +1,29 @@
 class Api::V1::OrderItemsController < ApplicationController
-  skip_before_action :authenticate, only: [:create, :update, :destroy]
+	skip_before_action :authenticate, only: [:update, :destroy]
 
-  def create
-		@order = current_order
-		@order_item = @order.order_items.new(order_item_params)
-    session[:order_id] = @order.id
-    if @order.save
-      render json: { order_item: OrderItemSerializer.new(@order_item)  }
+	def index 
+		order = current_order
+		# render json: { orders: order_items }
+		render json: {
+			orders: order.order_items.map { |item|
+				OrderItemSerializer.new(item).attributes
+			},
+			totalOrder: order.total
+		}
+	end
+
+	def create
+		# byebug
+		order = current_order
+		# order_item = order.order_items.new(order_item_params)
+		order_item = add_item(order, params[:product_id], params[:quantity])
+		if order.valid?
+			order.save
+			# byebug
+      render json: { orderItem: OrderItemSerializer.new(order_item), orderTotal: order.total, confirmation: "Product added to you cart."  }
     else 
-      render json: { errors: @order.errors.full_messages }
-    end
+      render json: { errors: order.errors.full_messages }
+		end
 	end
 
 	def update

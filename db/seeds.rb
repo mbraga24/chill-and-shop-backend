@@ -23,7 +23,7 @@ fernanda = User.create(
   first_name: "Jacquelyn",
   last_name: "Biantella",
   email: "jac@example.com",
-  type: "Customer",
+  type: "Buyer",
   password: "123123"
 )
 
@@ -63,7 +63,7 @@ product_5 = Product.create(
   title: "Apple Iphone 7 - 128GB",
   price: "125.00",
   image_url: "https://cdn.shopify.com/s/files/1/0019/7387/8850/products/DSC01105_1aa7522e-35c6-4f47-8a8a-c11a1a7621fa_3456x.JPG?v=1542834895",
-  quantity: 3,
+  quantity: 2,
   seller: jacquelyn
 )
 

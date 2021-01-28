@@ -6,8 +6,8 @@ class User < ApplicationRecord
             uniqueness: { case_sensitive: false } 
 
   validate :password_cant_be_blank, :if => :password 
-  
-  scope :customers, -> { where(type: 'Customer')}
+
+  scope :buyers, -> { where(type: 'Buyer') }
   scope :sellers, -> { where(type: 'Seller')}
 
   def password_cant_be_blank

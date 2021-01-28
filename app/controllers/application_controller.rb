@@ -1,5 +1,35 @@
 class ApplicationController < ActionController::API
+  include ActionController::Helpers # ===> If you want to include the Helpers module while still keeping your applications as "rails-api" then simply include the module
   before_action :authenticate
+  
+  # helper_method :current_order
+
+  def current_order
+    # byebug
+    if !@current_user.order.nil?
+      Order.find(@current_user.order.id)
+    else
+      # byebug
+      Order.create(customer: @current_user)
+    end
+  end
+
+  def add_item(order, product_id, quantity)
+		# byebug
+		order_item = order.order_items.where('product_id = ?', product_id).first
+		if order_item
+			# byebug
+			# increase the quantity of product in cart
+			order_item.quantity += quantity
+			order_item.save
+		else
+			# byebug
+			# product does not exist in cart
+      order_item = order.order_items.create(product_id: product_id, quantity: quantity)
+      # byebug
+		end
+		return order_item
+	end
 
   def encode_token(payload)
     # Rails.application.secrets.secret_keybase
