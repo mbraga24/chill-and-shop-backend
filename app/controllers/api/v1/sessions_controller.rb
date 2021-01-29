@@ -1,7 +1,6 @@
 class Api::V1::SessionsController < ApplicationController
   wrap_parameters :user, include: [:email, :password] 
   skip_before_action :authenticate, only: [:login]
-  # before_action :authenticate, only: [:autologin]
   
   def login
     user = User.find_by(email: user_credentials_params[:email])
@@ -15,9 +14,7 @@ class Api::V1::SessionsController < ApplicationController
   end
 
   def autologin
-    # byebug
     render json: { user: UserSerializer.new(@current_user) }, status: :ok
-    # render json: @current_user, status: :ok
   end
 
   private 

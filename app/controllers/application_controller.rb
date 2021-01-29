@@ -23,9 +23,22 @@ class ApplicationController < ActionController::API
 		return order_item
   end
   
-  # def is_empty_or_update_product(product_id)
-  #   product = Product.find_by(id: product_id)
-  # end
+  def process_products(order_items)
+    product_missing = []
+
+		order_items.each do |o_item|
+			product = Product.find(o_item.product_id)
+			if product.quantity >= 1
+				product.decrement!(:quantity, o_item.quantity)
+        product.save
+        
+				OrderItem.find(o_item.id).destroy
+			else	
+				product_missing << product.id
+			end
+    end
+    return product_missing
+  end
 
   def encode_token(payload)
     JWT.encode(payload, Rails.application.secrets.secret_key_base, 'HS256')
