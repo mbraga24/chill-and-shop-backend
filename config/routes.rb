@@ -7,8 +7,9 @@ Rails.application.routes.draw do
       resources :products, only: [:index, :create, :update, :destroy]
       get '/products_by', to: 'products#filter_products'
       
-      resources :order_items, only: [:index, :update]
+      resources :order_items, only: [:index]
       post '/create-order', to: 'order_items#create'
+      patch '/update-order-item/:id', to: 'order_items#update_order_item'
       delete '/delete-order-item/:id', to: 'order_items#delete_order_item'
 
       resources :users, only: [:index]

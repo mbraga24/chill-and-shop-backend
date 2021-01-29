@@ -20,9 +20,9 @@ jacquelyn = User.create(
 )
 
 fernanda = User.create(
-  first_name: "Jacquelyn",
-  last_name: "Biantella",
-  email: "jac@example.com",
+  first_name: "fernanda",
+  last_name: "Castello",
+  email: "fernanda@example.com",
   type: "Buyer",
   password: "123123"
 )

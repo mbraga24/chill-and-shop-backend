@@ -1,5 +1,5 @@
 class Api::V1::OrderItemsController < ApplicationController
-	skip_before_action :authenticate, only: [:update, :destroy]
+	# skip_before_action :authenticate, only: [:destroy]
 
 	def index 
 		order = current_order
@@ -22,16 +22,16 @@ class Api::V1::OrderItemsController < ApplicationController
 		end
 	end
 
-	def update
-		byebug
-		@order = current_order
-		@order_item = @order.order_items.find(params[:id])
-		@order_item.update_attributes(order_item_params)
-    if @order_item.update_attributes(order_item_params)
-      @order_items = @order.order_items
-      render json: { order_items: order_items }
+	def update_order_item
+		# byebug
+		order = current_order
+		order_item = order.order_items.find(params[:id])
+		order_item.update_attributes(order_item_params)
+		if order_item.update_attributes(order_item_params)
+			order_item.save
+      render json: { orderItem: OrderItemSerializer.new(order_item), orderTotal: order.total, confirmation: "Your order has been successfully updated." }, status: :accepted
     else
-      render json: { errors: @order_item.errors.full_messages }
+      render json: { errors: @order_item.errors.full_messages }, status: :bad_request
     end
 	end
 
