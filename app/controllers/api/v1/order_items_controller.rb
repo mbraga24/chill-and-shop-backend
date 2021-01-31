@@ -42,10 +42,10 @@ class Api::V1::OrderItemsController < ApplicationController
 	def place_order
 		order = current_order 
 		if order
-			product_missing = process_products(order.order_items)			
+			product_missing = process_order(order.order_items)			
 
 			if !product_missing.empty?
-				render json: { error: true, confirmation: "We're sorry. Some of the items in your cart are no longer available. Please check all the items and try again." }, status: :conflict
+				render json: { error: true, confirmation: "We're sorry. Some of the items in your shopping cart are no longer available. Please update your shopping cart and try again." }, status: :conflict
 			else 
 				render json: { confirmation: "Order completed. Thank you for shopping!" }, status: :ok
 			end

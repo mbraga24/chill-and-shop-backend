@@ -17,15 +17,13 @@ class ApplicationController < ActionController::API
 			order_item.quantity += quantity
 			order_item.save
 		else
-			# product does not exist in cart
       order_item = order.order_items.create(product_id: product_id, quantity: quantity)
 		end
 		return order_item
   end
   
-  def process_products(order_items)
+  def process_order(order_items)
     product_missing = []
-
 		order_items.each do |o_item|
 			product = Product.find(o_item.product_id)
 			if product.quantity >= 1
