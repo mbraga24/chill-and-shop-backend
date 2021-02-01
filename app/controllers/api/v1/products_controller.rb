@@ -17,7 +17,7 @@ class Api::V1::ProductsController < ApplicationController
       image = Cloudinary::Uploader.upload(params[:file])
       product[:image_url] = image["url"]
       product.save
-      render json: { product: ProductSerializer.new(product), confirmation: "Product added to inventory." }, status: :created
+      render json: { product: ProductSerializer.new(product), confirmation: "Successfully added to inventory." }, status: :created
     else
       render json: { errors: product.errors.full_messages }, status: :bad_request
     end

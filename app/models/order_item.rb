@@ -2,7 +2,6 @@ class OrderItem < ApplicationRecord
   belongs_to :product
   belongs_to :order
 
-  
   before_save :set_unit_price
   before_save :set_total_price
 

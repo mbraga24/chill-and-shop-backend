@@ -10,6 +10,4 @@ class OrderItemSerializer < ActiveModel::Serializer
       seller: product.seller
     }
   end
-
-
 end
