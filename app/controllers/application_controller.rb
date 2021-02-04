@@ -11,6 +11,8 @@ class ApplicationController < ActionController::API
     end
   end
 
+  # I could create a current_placed_order for the current_user - assuming the user is a seller
+
   def add_or_create_order_item(order, product_id, quantity)
 		order_item = order.order_items.where('product_id = ?', product_id).first
 		if order_item
@@ -27,10 +29,16 @@ class ApplicationController < ActionController::API
     product_missing = []
 
 		order_items.each do |o_item|
-			product = Product.find(o_item.product_id)
-			if product.quantity >= 1
+      product = Product.find(o_item.product_id)
+      # If the product orderd has an availability quantity greater or equal to 1
+      #  - AND -
+      # quantity available is greater or equal to the quantity requested by the user proceed
+      if product.quantity >= 1 && product.quantity >= o_item.quantity
 				product.decrement!(:quantity, o_item.quantity)
         product.save
+        
+        # create a placedOrder record for the seller with quantity, unit_price, and total_price 
+        # shipped, arrived, and archived columns will be set to 'false' as default
         
 				OrderItem.find(o_item.id).destroy
 			else	

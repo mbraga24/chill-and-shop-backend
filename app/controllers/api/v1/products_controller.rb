@@ -46,7 +46,7 @@ class Api::V1::ProductsController < ApplicationController
     
     if result.value?("ok")
       product.destroy
-      render json: { product: ProductSerializer.new(product), confirmation: "Product deleted successfully!" }, status: :accepted
+      render json: { product: ProductSerializer.new(product), confirmation: "Product removed from your inventory" }, status: :accepted
     else
       render json: { error: "Something went wrong! Try again later." }, status: :bad_request
     end
