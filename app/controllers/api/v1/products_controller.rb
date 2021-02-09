@@ -9,8 +9,9 @@ class Api::V1::ProductsController < ApplicationController
   def create
     product = Product.new(
       title: params[:title], 
-      price: params[:price].to_f, 
-      quantity: params[:quantity].to_i,
+      # price: number_with_precision(params[:price], precision: 2), 
+      price: params[:price], 
+      quantity: params[:quantity],
       seller: @current_user
     )
     if product.valid?
