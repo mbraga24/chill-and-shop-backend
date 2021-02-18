@@ -32,7 +32,7 @@ I'm excited to keep working on this project and expand its features and capabili
 
 This project was inspired on an application assessment for a backend internship role for [Shopify](shorturl.at/iCTY8). Unfortunately I could't complete all the requirements before submission but I decided to keep working on it to learn more about how to develop those specific features and challenge myself to finish, if not all, at least most of the requirements for the that assessment.
 
-[Back To The Top](#chill-&-shop)
+[Back To The Top](#chill-and-shop)
 
 ---
 
@@ -49,7 +49,7 @@ This project was inspired on an application assessment for a backend internship 
 1. Follow the instructions for the [front-end portion](https://github.com/mrdbrg/chill-and-shop-frontend) of this application. 
 1. Run `rails s` to start the app.
 
-[Back To The Top](#chill-&-shop)
+[Back To The Top](#chill-and-shop)
 
 ---
 
@@ -70,7 +70,7 @@ This project was inspired on an application assessment for a backend internship 
 - [bcrypt-ruby](https://github.com/codahale/bcrypt-ruby)
 - [rack-cors](https://github.com/cyu/rack-cors)
 
-[Back To The Top](#chill-&-shop)
+[Back To The Top](#chill-and-shop)
 
 ---
 
@@ -86,7 +86,8 @@ The above copyright notice and this permission notice shall be included in all c
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE
 
-[Back To The Top](#chill-&-shop)
+[Back To The Top](#chill-and-shop)
+
 ---
 
 ## Author Info
@@ -94,4 +95,4 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 - LinkedIn - [Marlon Braga](https://www.linkedin.com/in/marlon-braga/)
 - Portfolio - [Currently unavailable and under construction](https://www.youtube.com/watch?v=oHg5SJYRHA0&ab_channel=cotter548)
 
-[Back To The Top](#chill-&-shop)
+[Back To The Top](#chill-and-shop)
