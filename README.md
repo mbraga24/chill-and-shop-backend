@@ -1,4 +1,4 @@
-# Chill & Shop
+# Chill And Shop
 
 ## Project Preview 
 
