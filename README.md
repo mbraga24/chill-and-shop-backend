@@ -38,7 +38,7 @@ This project was inspired on an application assessment for a backend internship 
 
 ## Installation
 
-#### [SiriuS - Backend](https://github.com/mrdbrg/chill-and-shop-backend)
+#### [Chill&Shop - Backend](https://github.com/mrdbrg/chill-and-shop-backend)
 
 1. Fork this pository.
 1. Clone this repository onto your local machine.
