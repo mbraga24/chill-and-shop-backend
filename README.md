@@ -2,7 +2,7 @@
 
 ## Project Preview 
 
-## =====> IMAGES GO HERE <=====
+#### =====> SCREENSHOTS GO HERE <=====
 
 <br />
 
