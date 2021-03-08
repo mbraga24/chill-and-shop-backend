@@ -9,6 +9,8 @@ class User < ApplicationRecord
 
   scope :buyers, -> { where(type: 'Buyer') }
   scope :sellers, -> { where(type: 'Seller')}
+  # ////////////////// Working in progress //////////////////
+  # scope :hybrid, -> { where(type: 'Hybrid')}
 
   def password_cant_be_blank
     if !!password.present? && password.blank? 

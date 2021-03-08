@@ -11,9 +11,11 @@ class ApplicationController < ActionController::API
     end
   end
 
+  # //////////////////////////////// Options for the hybrid solution ////////////////////////////////
   # I could create a current_placed_orders for the current_user - assuming the user is a seller
   # I could create a current_shipped_orders for the current_user - assuming the user is a seller
   # I could create a archived_orders for the current_user - assuming the user is a seller
+  # ////////////////////////////////////////////////////////////////////////////////////////////////
 
   def add_or_create_order_item(order, product_id, quantity)
 		order_item = order.order_items.where('product_id = ?', product_id).first
